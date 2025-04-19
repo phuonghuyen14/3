@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giải phương trình bậc 2 (Prompt)</title>
+</head>
+<body>
+    <h1>Giải phương trình bậc 2: ax² + bx + c = 0</h1>
+    <p id="ketQua3"></p>
+
+    <script>
+        function giaiPhuongTrinhBac2() {
+            const aChuoi = prompt("Nhập hệ số a:");
+            const bChuoi = prompt("Nhập hệ số b:");
+            const cChuoi = prompt("Nhập hệ số c:");
+            const ketQuaElement = document.getElementById("ketQua3");
+
+            if (aChuoi === null || bChuoi === null || cChuoi === null) {
+                ketQuaElement.textContent = "Bạn đã hủy nhập một hoặc nhiều hệ số.";
+                return;
+            }
+
+            const a = parseFloat(aChuoi);
+            const b = parseFloat(bChuoi);
+            const c = parseFloat(cChuoi);
+
+            if (isNaN(a) || isNaN(b) || isNaN(c)) {
+                ketQuaElement.textContent = "Vui lòng nhập các hệ số a, b, c là số.";
+                return;
+            }
+
+            if (a === 0) {
+                if (b === 0) {
+                    ketQuaElement.textContent = (c === 0) ? "Phương trình vô số nghiệm." : "Phương trình vô nghiệm.";
+                } else {
+                    ketQuaElement.textContent = "Phương trình có nghiệm x = " + (-c / b);
+                }
+                return;
+            }
+
+            const delta = b * b - 4 * a * c;
+
+            if (delta < 0) {
+                ketQuaElement.textContent = "Phương trình vô nghiệm thực.";
+            } else if (delta === 0) {
+                const x = -b / (2 * a);
+                ketQuaElement.textContent = "Phương trình có nghiệm kép x = " + x;
+            } else {
+                const x1 = (-b + Math.sqrt(delta)) / (2 * a);
+                const x2 = (-b - Math.sqrt(delta)) / (2 * a);
+                ketQuaElement.textContent = "Phương trình có hai nghiệm phân biệt: x1 = " + x1 + ", x2 = " + x2;
+            }
+        }
+
+        
+        giaiPhuongTrinhBac2();
+    </script>
+</body>
+</html>
